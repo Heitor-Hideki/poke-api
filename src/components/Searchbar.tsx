@@ -33,8 +33,8 @@ const Searchbar = () => {
             </div>
             {pokemon ? (
                 <div>
-                    <p>Nome: {pokemon.name}</p>
-                    <p>Peso: {pokemon.weight}</p>
+                    <div className="pokemonSearchName">Nome: {pokemon.name}</div>
+                    <div>Peso: {pokemon.weight}</div>
                     <img src={pokemon.sprites.front_default} alt="" />
                 </div>
             ) : null}
