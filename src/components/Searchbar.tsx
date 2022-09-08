@@ -1,27 +1,31 @@
 import React from "react";
 import { useState } from "react";
-import { searchPokemon } from "../api"; 
 
 // interface IPokemon {
 //     name: string;
-//     weight: string
+//     weight: string;
+//     onSearch: any;
 //   }
 
-const Searchbar = () => {
+const Searchbar = (props:any) => {
     const [search, setSearch] = useState("dito")
-    const [pokemon, setPokemon] = useState<any>()
+    const {onSearch} = props
+    // const [pokemon, setPokemon] = useState<any>()
     // const [pokemon, setPokemon] = useState<IPokemon>({} as IPokemon)
     const onchangeHandler = (e: any) => {
         setSearch(e.target.value)
+        if (e.target.value.length === 0) {
+            onSearch(undefined)
+        }
     }
     const onButtonClickHandler = () => {
-        onSearchHandler(search)
+        onSearch(search)
     }
-    const onSearchHandler = async (pokemon: any) => {
-        const result = await searchPokemon(pokemon)
-        setPokemon(result)
-        // console.log(result)
-    }
+    // const onSearchHandler = async (pokemon: any) => {
+    //     const result = await searchPokemon(pokemon)
+    //     setPokemon(result)
+    //     // console.log(result)
+    // }
 
     return (
         <div className="searchbarContainer">
@@ -31,13 +35,13 @@ const Searchbar = () => {
             <div>
                 <button className="searchbarButton" onClick={onButtonClickHandler}>Buscar</button>
             </div>
-            {pokemon ? (
+            {/* {pokemon ? (
                 <div>
                     <div className="pokemonSearchName">Nome: {pokemon.name}</div>
                     <div>Peso: {pokemon.weight}</div>
                     <img src={pokemon.sprites.front_default} alt="" />
                 </div>
-            ) : null}
+            ) : null} */}
         </div>
         )
 }
